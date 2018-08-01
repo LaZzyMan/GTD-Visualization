@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import L from 'leaflet'
+import L from './LeafletAddition.js'
 
 const modes = ['space-time', 'static-dynamic']
 
@@ -51,7 +51,7 @@ export default {
     mapUrl: {
       type: String,
       default: 'https://api.mapbox.com/styles/v1/hideinme/cjbd5v7f18sxz2rmxt2ewnqtt/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGlkZWlubWUiLCJhIjoiY2o4MXB3eWpvNnEzZzJ3cnI4Z3hzZjFzdSJ9.FIWmaUbuuwT2Jl3OcBx1aQ'
-    }
+    },
   },
   data () {
     return {
@@ -118,7 +118,7 @@ export default {
       if (this.mode !== modes[0]) { return }
       // add new point layers to layer group
       var that = this
-      // console.log(this.currentDailyData.length)
+      console.log(this.currentDailyData.length)
       this.currentDailyData.forEach(item => {
         if (!item.geometry.coordinates ||
           !item.geometry.coordinates[0] ||
@@ -137,7 +137,7 @@ export default {
           deadLayers.push(layer)
         }
       })
-      // console.log(deadLayers.length)
+      console.log(deadLayers.length)
       deadLayers.forEach(function (value, index, array) {
         that.markerLayerGroup.removeLayer(value)
       })
@@ -149,13 +149,6 @@ export default {
       this.staticMarkerPosition.lng === undefined) { return }
       this.staticMarkerLayerGroup.clearLayers()
       this.addSinglePoint(this.staticMarkerLayerGroup, this.staticMarkerPosition.lng, this.staticMarkerPosition.lat, '#38B2CE')
-      // let icon = L.icon({
-      //   iconUrl: 'static/icons/pin_red.png',
-      //   iconSize: [16, 24],
-      //   iconAnchor: [8, 24]
-      //   // className: 'single-point-marker' // define in globe styles
-      // })
-      // this.staticMarkerLayerGroup.addLayer(L.marker([this.staticMarkerPosition.lat, this.staticMarkerPosition.lng], {icon: icon}))
       this.map.setView([this.staticMarkerPosition.lat, this.staticMarkerPosition.lng], this.zoom)
     },
     dynamicMarkerPosition () {
@@ -165,50 +158,19 @@ export default {
       this.dynamicMarkerPosition.lng === undefined) { return }
       this.dynamicMarkerLayerGroup.clearLayers()
       this.addSinglePoint(this.dynamicMarkerLayerGroup, this.dynamicMarkerPosition.lng, this.dynamicMarkerPosition.lat, '#39E639')
-      // let icon = L.icon({
-      //   iconUrl: 'static/icons/pin_blue.png',
-      //   iconSize: [16, 24],
-      //   iconAnchor: [8, 24]
-      //   // className: 'single-point-marker' // define in globe styles
-      // })
-      // this.dynamicMarkerLayerGroup.addLayer(L.marker([this.dynamicMarkerPosition.lat, this.dynamicMarkerPosition.lng], {icon: icon}))
     }
   },
   methods: {
     addSinglePoint (layerGroup, lng, lat, color) {
-      var ringOptions = {
-        radius: 10,
-        stroke: true,
-        color: color,
-        weight: 2,
-        opacity: 1,
-        fill: false,
-        render: L.svg(),
-        className: 'main-firstring-marker'
+      const options = {
+        lng,
+        lat,
+        color,
+        ringRadius: 10,
+        pointRadius: 5,
+        lifetime: 10
       }
-      var firstRingLayer = L.circleMarker([lat, lng], ringOptions)
-      ringOptions.className = 'main-secondring-marker'
-      var secondRingLayer = L.circleMarker([lat, lng], ringOptions)
-      // display days
-      firstRingLayer.lifetime = 10
-      secondRingLayer.lifetime = 10
-      layerGroup.addLayer(firstRingLayer)
-      layerGroup.addLayer(secondRingLayer)
-
-      var pointOptions = {
-        radius: 5,
-        stroke: false,
-        color: color,
-        weight: 1,
-        opacity: 1,
-        fill: true,
-        fillOpacity: 1,
-        render: L.svg(),
-        className: 'main-point-marker'
-      }
-      var pointLayer = L.circleMarker([lat, lng], pointOptions)
-      pointLayer.lifetime = 10
-      layerGroup.addLayer(pointLayer)
+      layerGroup.addLayer(L.pointAnimateLayer(options))
     }
   }
 }
