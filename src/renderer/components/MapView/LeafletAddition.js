@@ -140,7 +140,7 @@ L.canvasLayer = () => new L.CanvasLayer()
 
 function animate () {
   requestAnimationFrame(animate)
-  TWEEN.update();
+  TWEEN.update()
 }
 
 L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
@@ -168,6 +168,7 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
       ringAlphaFirst: 1.0,
       ringAlphaSecond: 1.0
     }
+    this.drawPoints = this.drawPoints.bind(this)
     this.animation = new TWEEN.Tween(this.drawParams)
       .to({
         ringRadiusFirst: options.ringRadius / 2,
@@ -177,8 +178,8 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
         ringAlphaFirst: 0.5,
         ringAlphaSecond: 1.0
       }, 1000)
-      .easing(TWEEN.Easing.Elastic.InOut)
-      .onUpdate(this.drawPoints.bind(this))
+      .easing(TWEEN.Easing.Linear.InOut)
+      .onUpdate(this.drawPoints)
       .repeat(Infinity)
   },
 
@@ -207,24 +208,30 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
   },
 
   drawPoints () {
+    if (!this.ctx) {
+      console.log(this)
+      console.log(this.ctx)
+      console.log(this.drawParams)
+      return
+    }
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     const coordinates = this.options.points.map((point) => {
       return this._map.latLngToContainerPoint([point.lat, point.lng])
     })
     coordinates.forEach(coordinate => {
       this.ctx.beginPath()
-      this.ctx.globalAlpha = this.drawParamspointAlpha
-      this.ctx.arc(coordinate.x, coordinate.y, this.drawParamspointRadius, 0, Math.PI * 2)
+      this.ctx.globalAlpha = this.drawParams.pointAlpha
+      this.ctx.arc(coordinate.x, coordinate.y, this.drawParams.pointRadius, 0, Math.PI * 2)
       this.ctx.closePath()
       this.ctx.fill()
       this.ctx.beginPath()
-      this.ctx.globalAlpha = this.drawParamsringAlphaFirst
-      this.ctx.arc(coordinate.x, coordinate.y, this.drawParamsringRadiusFirst, 0, Math.PI * 2)
+      this.ctx.globalAlpha = this.drawParams.ringAlphaFirst
+      this.ctx.arc(coordinate.x, coordinate.y, this.drawParams.ringRadiusFirst, 0, Math.PI * 2)
       this.ctx.closePath()
       this.ctx.stroke()
       this.ctx.beginPath()
-      this.ctx.globalAlpha = this.drawParamsringAlphaSecond
-      this.ctx.arc(coordinate.x, coordinate.y, this.drawParamsringRadiusSecond, 0, Math.PI * 2)
+      this.ctx.globalAlpha = this.drawParams.ringAlphaSecond
+      this.ctx.arc(coordinate.x, coordinate.y, this.drawParams.ringRadiusSecond, 0, Math.PI * 2)
       this.ctx.closePath()
       this.ctx.stroke()
     })
