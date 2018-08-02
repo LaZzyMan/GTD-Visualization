@@ -1,5 +1,5 @@
 import L from 'leaflet'
-import TWEEN from 'tweenjs'
+import TWEEN from 'tween.js'
 
 if (!L.DomUtil.setTransform) {
   L.DomUtil.setTransform = function (el, offset, scale) {
@@ -138,6 +138,11 @@ L.CanvasLayer = (L.Layer ? L.Layer : L.Class).extend({
 
 L.canvasLayer = () => new L.CanvasLayer()
 
+function animate () {
+  requestAnimationFrame(animate)
+  TWEEN.update();
+}
+
 L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
   options: {
     points: [],
@@ -153,7 +158,6 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
 
   initialize (options) {
     // console.log(options)
-    const that = this
     L.setOptions(this, options)
     this.lifetime = options.lifetime
     this.drawParams = {
@@ -173,24 +177,8 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
         ringAlphaFirst: 0.5,
         ringAlphaSecond: 1.0
       }, 1000)
-      .to({
-        ringRadiusFirst: options.ringRadius,
-        ringRadiusSecond: options.ringRadius / 2,
-        pointRadius: options.pointRadius,
-        pointAlpha: 1.0,
-        ringAlphaFirst: 0,
-        ringAlphaSecond: 0.5
-      }, 1000)
-      .to({
-        ringRadiusFirst: 0.0,
-        ringRadiusSecond: options.ringRadius,
-        pointRadius: 0,
-        pointAlpha: 0,
-        ringAlphaFirst: 0,
-        ringAlphaSecond: 0
-      }, 1000)
       .easing(TWEEN.Easing.Elastic.InOut)
-      .onUpdate(that.drawPoints)
+      .onUpdate(this.drawPoints.bind(this))
       .repeat(Infinity)
   },
 
@@ -198,6 +186,7 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
     this._canvasLayer = L.canvasLayer().delegate(this)
     this._canvasLayer.addTo(map)
     this._map = map
+    this.animation.start()
   },
 
   onRemove (map) {
@@ -214,35 +203,30 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
     this.canvas = viewInfo.canvas
     this.ctx.fillStyle = this.options.color
     this.ctx.strokeStyle = this.options.color
-    this.animation.start()
+    animate()
   },
 
   drawPoints () {
-    const that = this
-    const ctx = this.ctx
-    this.ctx = ctx
-    ctx.fillStyle = this.options.color
-    ctx.strokeStyle = this.options.color
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     const coordinates = this.options.points.map((point) => {
-      return that._map.latLngToContainerPoint([point.lat, point.lng])
+      return this._map.latLngToContainerPoint([point.lat, point.lng])
     })
     coordinates.forEach(coordinate => {
-      ctx.beginPath()
-      ctx.globalAlpha = that.drawParamspointAlpha
-      ctx.arc(coordinate.x, coordinate.y, that.drawParamspointRadius, 0, Math.PI * 2)
-      ctx.closePath()
-      ctx.fill()
-      ctx.beginPath()
-      ctx.globalAlpha = that.drawParamsringAlphaFirst
-      ctx.arc(coordinate.x, coordinate.y, that.drawParamsringRadiusFirst, 0, Math.PI * 2)
-      ctx.closePath()
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.globalAlpha = that.drawParamsringAlphaSecond
-      ctx.arc(coordinate.x, coordinate.y, that.drawParamsringRadiusSecond, 0, Math.PI * 2)
-      ctx.closePath()
-      ctx.stroke()
+      this.ctx.beginPath()
+      this.ctx.globalAlpha = this.drawParamspointAlpha
+      this.ctx.arc(coordinate.x, coordinate.y, this.drawParamspointRadius, 0, Math.PI * 2)
+      this.ctx.closePath()
+      this.ctx.fill()
+      this.ctx.beginPath()
+      this.ctx.globalAlpha = this.drawParamsringAlphaFirst
+      this.ctx.arc(coordinate.x, coordinate.y, this.drawParamsringRadiusFirst, 0, Math.PI * 2)
+      this.ctx.closePath()
+      this.ctx.stroke()
+      this.ctx.beginPath()
+      this.ctx.globalAlpha = this.drawParamsringAlphaSecond
+      this.ctx.arc(coordinate.x, coordinate.y, this.drawParamsringRadiusSecond, 0, Math.PI * 2)
+      this.ctx.closePath()
+      this.ctx.stroke()
     })
   }
 })
