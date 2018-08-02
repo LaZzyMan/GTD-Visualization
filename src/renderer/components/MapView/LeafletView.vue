@@ -51,7 +51,7 @@ export default {
     mapUrl: {
       type: String,
       default: 'https://api.mapbox.com/styles/v1/hideinme/cjbd5v7f18sxz2rmxt2ewnqtt/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGlkZWlubWUiLCJhIjoiY2o4MXB3eWpvNnEzZzJ3cnI4Z3hzZjFzdSJ9.FIWmaUbuuwT2Jl3OcBx1aQ'
-    },
+    }
   },
   data () {
     return {
@@ -118,16 +118,14 @@ export default {
       if (this.mode !== modes[0]) { return }
       // add new point layers to layer group
       var that = this
-      console.log(this.currentDailyData.length)
-      this.currentDailyData.forEach(item => {
+      this.addSinglePoint(that.markerLayerGroup, that.currentDailyData.map((item) => {
         if (!item.geometry.coordinates ||
           !item.geometry.coordinates[0] ||
-          !item.geometry.coordinates[1]) { return }
-
+          !item.geometry.coordinates[1]) { return [] }
         let lng = item.geometry.coordinates[0]
         let lat = item.geometry.coordinates[1]
-        that.addSinglePoint(that.markerLayerGroup, lng, lat, '#E66417')
-      })
+        return { lng, lat }
+      }), '#E66417')
       // remove point layers running out life time
       // console.log(this.markerLayerGroup.getLayers().length)
       let deadLayers = []
@@ -137,7 +135,6 @@ export default {
           deadLayers.push(layer)
         }
       })
-      console.log(deadLayers.length)
       deadLayers.forEach(function (value, index, array) {
         that.markerLayerGroup.removeLayer(value)
       })
@@ -148,7 +145,7 @@ export default {
       this.staticMarkerPosition.lat === undefined ||
       this.staticMarkerPosition.lng === undefined) { return }
       this.staticMarkerLayerGroup.clearLayers()
-      this.addSinglePoint(this.staticMarkerLayerGroup, this.staticMarkerPosition.lng, this.staticMarkerPosition.lat, '#38B2CE')
+      this.addSinglePoint(this.staticMarkerLayerGroup, [{lng: this.staticMarkerPosition.lng, lat: this.staticMarkerPosition.lat}], '#38B2CE')
       this.map.setView([this.staticMarkerPosition.lat, this.staticMarkerPosition.lng], this.zoom)
     },
     dynamicMarkerPosition () {
@@ -157,14 +154,13 @@ export default {
       this.dynamicMarkerPosition.lat === undefined ||
       this.dynamicMarkerPosition.lng === undefined) { return }
       this.dynamicMarkerLayerGroup.clearLayers()
-      this.addSinglePoint(this.dynamicMarkerLayerGroup, this.dynamicMarkerPosition.lng, this.dynamicMarkerPosition.lat, '#39E639')
+      this.addSinglePoint(this.dynamicMarkerLayerGroup, [{lng: this.dynamicMarkerPosition.lng, lat: this.dynamicMarkerPosition.lat}], '#39E639')
     }
   },
   methods: {
-    addSinglePoint (layerGroup, lng, lat, color) {
+    addSinglePoint (layerGroup, points, color) {
       const options = {
-        lng,
-        lat,
+        points,
         color,
         ringRadius: 10,
         pointRadius: 5,
