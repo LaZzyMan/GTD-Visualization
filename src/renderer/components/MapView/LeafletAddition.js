@@ -178,7 +178,23 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
         ringAlphaFirst: 0.5,
         ringAlphaSecond: 1.0
       }, 1000)
-      .easing(TWEEN.Easing.Linear.InOut)
+      .to({
+        ringRadiusFirst: options.ringRadius,
+        ringRadiusSecond: options.ringRadius / 2,
+        pointRadius: options.pointRadius,
+        pointAlpha: 1.0,
+        ringAlphaFirst: 0,
+        ringAlphaSecond: 0.5
+      }, 1000)
+      .to({
+        ringRadiusFirst: 0.0,
+        ringRadiusSecond: options.ringRadius,
+        pointRadius: 0,
+        pointAlpha: 0,
+        ringAlphaFirst: 0,
+        ringAlphaSecond: 0
+      }, 1000)
+      .easing(TWEEN.Easing.Cubic.InOut)
       .onUpdate(this.drawPoints)
       .repeat(Infinity)
   },
@@ -209,11 +225,10 @@ L.PointAnimateLayer = (L.Layer ? L.Layer : L.Class).extend({
 
   drawPoints () {
     if (!this.ctx) {
-      console.log(this)
-      console.log(this.ctx)
-      console.log(this.drawParams)
+      console.log(1)
       return
     }
+    console.log(2)
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     const coordinates = this.options.points.map((point) => {
       return this._map.latLngToContainerPoint([point.lat, point.lng])

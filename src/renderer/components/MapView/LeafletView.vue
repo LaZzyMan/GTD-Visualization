@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import L from './LeafletAddition.js'
+import L from './LeafletSVGAddition.js'
 
 const modes = ['space-time', 'static-dynamic']
 
@@ -124,7 +124,7 @@ export default {
           !item.geometry.coordinates[1]) { return [] }
         let lng = item.geometry.coordinates[0]
         let lat = item.geometry.coordinates[1]
-        return { lng, lat }
+        return [ lng, lat ]
       }), '#E66417')
       // remove point layers running out life time
       // console.log(this.markerLayerGroup.getLayers().length)
@@ -160,13 +160,9 @@ export default {
   methods: {
     addSinglePoint (layerGroup, points, color) {
       const options = {
-        points,
-        color,
-        ringRadius: 10,
-        pointRadius: 5,
-        lifetime: 10
+        radius: 10
       }
-      layerGroup.addLayer(L.pointAnimateLayer(options))
+      layerGroup.addLayer(L.SvgPointLayer(points, options, this.map))
     }
   }
 }

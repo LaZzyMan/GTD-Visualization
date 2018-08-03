@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js dev
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js add d3
 
 PATH: 
   C:\Program Files\Python36\Scripts\;C:\Program Files\Python36\;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Rockwell Software\RSCommon;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Hewlett-Packard\SimplePass\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\iFLYTEK\VoiceAssistant\SpeechPlusRuntime;E:\Anaconda3\;E:\Anaconda3\Scripts\;C:\Program Files\Git\cmd;C:\Program Files\MATLAB\R2017a\runtime\win64;C:\Program Files\MATLAB\R2017a\bin;C:\Program Files\MongoDB\Server\3.4\bin\;C:\Users\Zzzz\AppData\Local\Microsoft\WindowsApps;C:\Users\机智如我\AppData\Roaming\npm;E:\Anaconda3;C:\OSGeo4W64\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Java\jdk1.8.0_162\bin;C:\Program Files\Java\jre1.8.0_162\bin;C:\Program Files\Java\jdk1.8.0_162\jre\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Graphviz2.38\bin;C:\Program Files\dotnet\;;C:\Program Files\Microsoft VS Code\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\Zzzz\AppData\Local\Microsoft\WindowsApps;C:\Users\机智如我\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;D:\Program Files (x86)\Fiddler;C:\Program Files\Java\jdk1.8.0_162\bin;C:\Program Files\Java\jdk1.8.0_162\jre\bin;C:\Users\Zzzz\AppData\Roaming\npm;C:\texlive\2017\bin\win32;C:\Users\Zzzz\AppData\Local\GitHubDesktop\bin;C:\Program Files\Python36\Scripts;;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps
@@ -76,7 +76,7 @@ npm manifest:
     },
     "dependencies": {
       "axios": "^0.16.2",
-      "d3": "^4.10.0",
+      "d3": "^5.5.0",
       "d3-cloud": "^1.2.4",
       "echarts": "^3.8.5",
       "element-ui": "2.0.8",
@@ -85,6 +85,7 @@ npm manifest:
       "normalize.css": "7.0.0",
       "nprogress": "0.2.0",
       "screenfull": "3.3.2",
+      "tween.js": "^16.6.0",
       "tweenjs": "^1.0.2",
       "vue": "^2.3.3",
       "vue-electron": "^1.0.6",
@@ -2694,17 +2695,17 @@ Lockfile:
     version "0.2.2"
     resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   
-  d3-array@1, d3-array@1.2.1, d3-array@^1.2.0:
+  d3-array@1, d3-array@^1.1.1, d3-array@^1.2.0:
     version "1.2.1"
     resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.1.tgz#d1ca33de2f6ac31efadb8e050a021d7e2396d5dc"
   
-  d3-axis@1.0.8:
+  d3-axis@1:
     version "1.0.8"
-    resolved "https://registry.yarnpkg.com/d3-axis/-/d3-axis-1.0.8.tgz#31a705a0b535e65759de14173a31933137f18efa"
+    resolved "http://registry.npm.taobao.org/d3-axis/download/d3-axis-1.0.8.tgz#31a705a0b535e65759de14173a31933137f18efa"
   
-  d3-brush@1.0.4:
+  d3-brush@1:
     version "1.0.4"
-    resolved "https://registry.yarnpkg.com/d3-brush/-/d3-brush-1.0.4.tgz#00c2f238019f24f6c0a194a26d41a1530ffe7bc4"
+    resolved "http://registry.npm.taobao.org/d3-brush/download/d3-brush-1.0.4.tgz#00c2f238019f24f6c0a194a26d41a1530ffe7bc4"
     dependencies:
       d3-dispatch "1"
       d3-drag "1"
@@ -2712,9 +2713,9 @@ Lockfile:
       d3-selection "1"
       d3-transition "1"
   
-  d3-chord@1.0.4:
+  d3-chord@1:
     version "1.0.4"
-    resolved "https://registry.yarnpkg.com/d3-chord/-/d3-chord-1.0.4.tgz#7dec4f0ba886f713fe111c45f763414f6f74ca2c"
+    resolved "http://registry.npm.taobao.org/d3-chord/download/d3-chord-1.0.4.tgz#7dec4f0ba886f713fe111c45f763414f6f74ca2c"
     dependencies:
       d3-array "1"
       d3-path "1"
@@ -2725,7 +2726,7 @@ Lockfile:
     dependencies:
       d3-dispatch "^1.0.3"
   
-  d3-collection@1, d3-collection@1.0.4:
+  d3-collection@1:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.4.tgz#342dfd12837c90974f33f1cc0a785aea570dcdc2"
   
@@ -2733,22 +2734,24 @@ Lockfile:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.2.0.tgz#d1ea19db5859c86854586276ec892cf93148459a"
   
-  d3-color@1.0.3:
-    version "1.0.3"
-    resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.0.3.tgz#bc7643fca8e53a8347e2fbdaffa236796b58509b"
+  d3-contour@1:
+    version "1.3.0"
+    resolved "http://registry.npm.taobao.org/d3-contour/download/d3-contour-1.3.0.tgz#cfb99098c48c46edd77e15ce123162f9e333e846"
+    dependencies:
+      d3-array "^1.1.1"
   
-  d3-dispatch@1, d3-dispatch@1.0.3, d3-dispatch@^1.0.3:
+  d3-dispatch@1, d3-dispatch@^1.0.3:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.3.tgz#46e1491eaa9b58c358fce5be4e8bed626e7871f8"
   
-  d3-drag@1, d3-drag@1.2.1:
+  d3-drag@1:
     version "1.2.1"
     resolved "https://registry.yarnpkg.com/d3-drag/-/d3-drag-1.2.1.tgz#df8dd4c502fb490fc7462046a8ad98a5c479282d"
     dependencies:
       d3-dispatch "1"
       d3-selection "1"
   
-  d3-dsv@1, d3-dsv@1.0.8:
+  d3-dsv@1:
     version "1.0.8"
     resolved "https://registry.yarnpkg.com/d3-dsv/-/d3-dsv-1.0.8.tgz#907e240d57b386618dc56468bacfe76bf19764ae"
     dependencies:
@@ -2756,13 +2759,19 @@ Lockfile:
       iconv-lite "0.4"
       rw "1"
   
-  d3-ease@1, d3-ease@1.0.3:
+  d3-ease@1:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/d3-ease/-/d3-ease-1.0.3.tgz#68bfbc349338a380c44d8acc4fbc3304aa2d8c0e"
   
-  d3-force@1.1.0:
+  d3-fetch@1:
     version "1.1.0"
-    resolved "https://registry.yarnpkg.com/d3-force/-/d3-force-1.1.0.tgz#cebf3c694f1078fcc3d4daf8e567b2fbd70d4ea3"
+    resolved "http://registry.npm.taobao.org/d3-fetch/download/d3-fetch-1.1.0.tgz#31cbcd506b21d6519ac6a120a079de8d0a57c00f"
+    dependencies:
+      d3-dsv "1"
+  
+  d3-force@1:
+    version "1.1.0"
+    resolved "http://registry.npm.taobao.org/d3-force/download/d3-force-1.1.0.tgz#cebf3c694f1078fcc3d4daf8e567b2fbd70d4ea3"
     dependencies:
       d3-collection "1"
       d3-dispatch "1"
@@ -2773,19 +2782,15 @@ Lockfile:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.3.0.tgz#a3ac44269a2011cdb87c7b5693040c18cddfff11"
   
-  d3-format@1.2.2:
-    version "1.2.2"
-    resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.2.2.tgz#1a39c479c8a57fe5051b2e67a3bee27061a74e7a"
-  
-  d3-geo@1.9.1:
-    version "1.9.1"
-    resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.9.1.tgz#157e3b0f917379d0f73bebfff3be537f49fa7356"
+  d3-geo@1:
+    version "1.10.0"
+    resolved "http://registry.npm.taobao.org/d3-geo/download/d3-geo-1.10.0.tgz#2972d18014f1e38fc1f8bb6d545377bdfb00c9ab"
     dependencies:
       d3-array "1"
   
-  d3-hierarchy@1.1.5:
-    version "1.1.5"
-    resolved "https://registry.yarnpkg.com/d3-hierarchy/-/d3-hierarchy-1.1.5.tgz#a1c845c42f84a206bcf1c01c01098ea4ddaa7a26"
+  d3-hierarchy@1:
+    version "1.1.6"
+    resolved "http://registry.npm.taobao.org/d3-hierarchy/download/d3-hierarchy-1.1.6.tgz#842c1372090f870b7ea013ebae5c0c8d9f56229c"
   
   d3-interpolate@1:
     version "1.2.0"
@@ -2793,78 +2798,65 @@ Lockfile:
     dependencies:
       d3-color "1"
   
-  d3-interpolate@1.1.6:
-    version "1.1.6"
-    resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.1.6.tgz#2cf395ae2381804df08aa1bf766b7f97b5f68fb6"
-    dependencies:
-      d3-color "1"
-  
-  d3-path@1, d3-path@1.0.5:
+  d3-path@1:
     version "1.0.5"
     resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-1.0.5.tgz#241eb1849bd9e9e8021c0d0a799f8a0e8e441764"
   
-  d3-polygon@1.0.3:
+  d3-polygon@1:
     version "1.0.3"
-    resolved "https://registry.yarnpkg.com/d3-polygon/-/d3-polygon-1.0.3.tgz#16888e9026460933f2b179652ad378224d382c62"
+    resolved "http://registry.npm.taobao.org/d3-polygon/download/d3-polygon-1.0.3.tgz#16888e9026460933f2b179652ad378224d382c62"
   
-  d3-quadtree@1, d3-quadtree@1.0.3:
+  d3-quadtree@1:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-1.0.3.tgz#ac7987e3e23fe805a990f28e1b50d38fcb822438"
   
-  d3-queue@3.0.7:
-    version "3.0.7"
-    resolved "https://registry.yarnpkg.com/d3-queue/-/d3-queue-3.0.7.tgz#c93a2e54b417c0959129d7d73f6cf7d4292e7618"
-  
-  d3-random@1.1.0:
+  d3-random@1:
     version "1.1.0"
-    resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-1.1.0.tgz#6642e506c6fa3a648595d2b2469788a8d12529d3"
+    resolved "http://registry.npm.taobao.org/d3-random/download/d3-random-1.1.0.tgz#6642e506c6fa3a648595d2b2469788a8d12529d3"
   
-  d3-request@1.0.6:
-    version "1.0.6"
-    resolved "https://registry.yarnpkg.com/d3-request/-/d3-request-1.0.6.tgz#a1044a9ef4ec28c824171c9379fae6d79474b19f"
+  d3-scale-chromatic@1:
+    version "1.3.0"
+    resolved "http://registry.npm.taobao.org/d3-scale-chromatic/download/d3-scale-chromatic-1.3.0.tgz#7ee38ffcaa7ad55cfed83a6a668aac5570c653c4"
     dependencies:
-      d3-collection "1"
-      d3-dispatch "1"
-      d3-dsv "1"
-      xmlhttprequest "1"
+      d3-color "1"
+      d3-interpolate "1"
   
-  d3-scale@1.0.7:
-    version "1.0.7"
-    resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-1.0.7.tgz#fa90324b3ea8a776422bd0472afab0b252a0945d"
+  d3-scale@2:
+    version "2.1.0"
+    resolved "http://registry.npm.taobao.org/d3-scale/download/d3-scale-2.1.0.tgz#8d3fd3e2a7c9080782a523c08507c5248289eef8"
     dependencies:
       d3-array "^1.2.0"
       d3-collection "1"
-      d3-color "1"
       d3-format "1"
       d3-interpolate "1"
       d3-time "1"
       d3-time-format "2"
   
-  d3-selection@1, d3-selection@1.3.0, d3-selection@^1.1.0:
+  d3-selection@1, d3-selection@^1.1.0:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.3.0.tgz#d53772382d3dc4f7507bfb28bcd2d6aed2a0ad6d"
   
-  d3-shape@1.2.0:
+  d3-shape@1:
     version "1.2.0"
-    resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.2.0.tgz#45d01538f064bafd05ea3d6d2cb748fd8c41f777"
+    resolved "http://registry.npm.taobao.org/d3-shape/download/d3-shape-1.2.0.tgz#45d01538f064bafd05ea3d6d2cb748fd8c41f777"
     dependencies:
       d3-path "1"
   
-  d3-time-format@2, d3-time-format@2.1.1:
+  d3-time-format@2:
     version "2.1.1"
     resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.1.1.tgz#85b7cdfbc9ffca187f14d3c456ffda268081bb31"
     dependencies:
       d3-time "1"
   
-  d3-time@1, d3-time@1.0.8:
+  d3-time@1:
     version "1.0.8"
     resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.0.8.tgz#dbd2d6007bf416fe67a76d17947b784bffea1e84"
   
-  d3-timer@1, d3-timer@1.0.7:
+  d3-timer@1:
     version "1.0.7"
     resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-1.0.7.tgz#df9650ca587f6c96607ff4e60cc38229e8dd8531"
   
-  d3-transition@1, d3-transition@1.1.1:
+  d3-transition@1:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/d3-transition/-/d3-transition-1.1.1.tgz#d8ef89c3b848735b060e54a39b32aaebaa421039"
     dependencies:
@@ -2875,13 +2867,13 @@ Lockfile:
       d3-selection "^1.1.0"
       d3-timer "1"
   
-  d3-voronoi@1.1.2:
+  d3-voronoi@1:
     version "1.1.2"
-    resolved "https://registry.yarnpkg.com/d3-voronoi/-/d3-voronoi-1.1.2.tgz#1687667e8f13a2d158c80c1480c5a29cb0d8973c"
+    resolved "http://registry.npm.taobao.org/d3-voronoi/download/d3-voronoi-1.1.2.tgz#1687667e8f13a2d158c80c1480c5a29cb0d8973c"
   
-  d3-zoom@1.7.1:
+  d3-zoom@1:
     version "1.7.1"
-    resolved "https://registry.yarnpkg.com/d3-zoom/-/d3-zoom-1.7.1.tgz#02f43b3c3e2db54f364582d7e4a236ccc5506b63"
+    resolved "http://registry.npm.taobao.org/d3-zoom/download/d3-zoom-1.7.1.tgz#02f43b3c3e2db54f364582d7e4a236ccc5506b63"
     dependencies:
       d3-dispatch "1"
       d3-drag "1"
@@ -2889,40 +2881,41 @@ Lockfile:
       d3-selection "1"
       d3-transition "1"
   
-  d3@^4.10.0:
-    version "4.13.0"
-    resolved "https://registry.yarnpkg.com/d3/-/d3-4.13.0.tgz#ab236ff8cf0cfc27a81e69bf2fb7518bc9b4f33d"
+  d3@^5.5.0:
+    version "5.5.0"
+    resolved "http://registry.npm.taobao.org/d3/download/d3-5.5.0.tgz#948413b91b988a6597f3e4c3e941d3b530bfee63"
     dependencies:
-      d3-array "1.2.1"
-      d3-axis "1.0.8"
-      d3-brush "1.0.4"
-      d3-chord "1.0.4"
-      d3-collection "1.0.4"
-      d3-color "1.0.3"
-      d3-dispatch "1.0.3"
-      d3-drag "1.2.1"
-      d3-dsv "1.0.8"
-      d3-ease "1.0.3"
-      d3-force "1.1.0"
-      d3-format "1.2.2"
-      d3-geo "1.9.1"
-      d3-hierarchy "1.1.5"
-      d3-interpolate "1.1.6"
-      d3-path "1.0.5"
-      d3-polygon "1.0.3"
-      d3-quadtree "1.0.3"
-      d3-queue "3.0.7"
-      d3-random "1.1.0"
-      d3-request "1.0.6"
-      d3-scale "1.0.7"
-      d3-selection "1.3.0"
-      d3-shape "1.2.0"
-      d3-time "1.0.8"
-      d3-time-format "2.1.1"
-      d3-timer "1.0.7"
-      d3-transition "1.1.1"
-      d3-voronoi "1.1.2"
-      d3-zoom "1.7.1"
+      d3-array "1"
+      d3-axis "1"
+      d3-brush "1"
+      d3-chord "1"
+      d3-collection "1"
+      d3-color "1"
+      d3-contour "1"
+      d3-dispatch "1"
+      d3-drag "1"
+      d3-dsv "1"
+      d3-ease "1"
+      d3-fetch "1"
+      d3-force "1"
+      d3-format "1"
+      d3-geo "1"
+      d3-hierarchy "1"
+      d3-interpolate "1"
+      d3-path "1"
+      d3-polygon "1"
+      d3-quadtree "1"
+      d3-random "1"
+      d3-scale "2"
+      d3-scale-chromatic "1"
+      d3-selection "1"
+      d3-shape "1"
+      d3-time "1"
+      d3-time-format "2"
+      d3-timer "1"
+      d3-transition "1"
+      d3-voronoi "1"
+      d3-zoom "1"
   
   d@1:
     version "1.0.0"
@@ -9478,6 +9471,10 @@ Lockfile:
     version "0.4.3"
     resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.4.3.tgz#6373db76909fe570e08d73583365ed828a74eeeb"
   
+  tween.js@^16.6.0:
+    version "16.6.0"
+    resolved "http://registry.npm.taobao.org/tween.js/download/tween.js-16.6.0.tgz#739104c9336cc4f11ee53f9ce7cede51e6723624"
+  
   tweenjs@^1.0.2:
     version "1.0.2"
     resolved "http://registry.npm.taobao.org/tweenjs/download/tweenjs-1.0.2.tgz#768869c4d4ba91fdb4c5ccc661969c58138555af"
@@ -10147,10 +10144,6 @@ Lockfile:
     version "1.5.3"
     resolved "https://registry.yarnpkg.com/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.3.tgz#185a888c04eca46c3e4070d99f7b49de3528992d"
   
-  xmlhttprequest@1:
-    version "1.8.0"
-    resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
-  
   "xtend@>=4.0.0 <4.1.0-0", xtend@^4.0.0, xtend@~4.0.1:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
@@ -10312,9 +10305,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225786
+  Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c node .electron-vue/dev-runner.js
+  Arguments: /d /s /c npm run lint:fix
   Directory: C:\Users\Zzzz\Desktop\GTD-Visualization
   Output:
   
