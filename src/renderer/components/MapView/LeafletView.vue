@@ -126,8 +126,6 @@ export default {
         let lat = item.geometry.coordinates[1]
         return [ lng, lat ]
       }), '#E66417')
-      // remove point layers running out life time
-      // console.log(this.markerLayerGroup.getLayers().length)
       let deadLayers = []
       this.markerLayerGroup.eachLayer(function (layer) {
         layer.lifetime -= 1
@@ -160,7 +158,9 @@ export default {
   methods: {
     addSinglePoint (layerGroup, points, color) {
       const options = {
-        radius: 10
+        radius: 5,
+        lifetime: 10,
+        ringRadius: 10,
       }
       layerGroup.addLayer(L.SvgPointLayer(points, options, this.map))
     }

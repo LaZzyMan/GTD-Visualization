@@ -1,5 +1,5 @@
 import L from 'leaflet'
-import d3 from 'd3'
+import * as d3 from 'd3'
 
 // Add functions needed
 L.Map.prototype.latLngToLayerPoint = function (latlng) { // (LatLng)
@@ -18,7 +18,7 @@ L.Map.prototype.getZoomScale = function (toZoom, fromZoom) {
   return crs.scale(toZoom) / crs.scale(fromZoom)
 }
 
-L.SVGScaleOverlay = L.Class.extend({
+L.SVGScaleOverlay = L.Layer.extend({
   options: {
     pane: 'overlayPane',
     nonBubblingEvents: [],
@@ -69,6 +69,9 @@ L.SVGScaleOverlay = L.Class.extend({
     this._svg.setAttribute('height', size.y)
   },
   moveEnd: function (e) {
+    if (!this._map) {
+      return
+    }
     var bounds = this._map.getBounds()
     var topLeftLatLng = new L.LatLng(bounds.getNorth(), bounds.getWest())
     var topLeftLayerPoint = this._map.latLngToLayerPoint(topLeftLatLng)
@@ -156,38 +159,36 @@ L.SVGScaleOverlay = L.Class.extend({
 
 })
 
-L.SvgScaleOverlay = function (options) {
+L.SvgScaleOverlay = (options) => {
   return new L.SVGScaleOverlay(options)
 }
 
 L.SvgPointLayer = (data, options, lmap) => {
   const svgLayer = new L.SvgScaleOverlay()
-  let circles = []
   svgLayer.onInitData = function () {
-    if (!data) {
-      var g = d3.select(this._g)
-      circles = g.selectAll('circle')
-        .data(data)
-        .enter().append('circle')
-      circles.style('fill-opacity', 0.8)
-      circles.style('fill', 'rgba(255,116,116, 0.5)')
-    }
+    this.lifetime = options.lifetime
+    const g = d3.select(this._g)
+    const circles = g.selectAll('circle')
+      .data(data)
+      .enter().append('circle')
+    circles.style('fill-opacity', 0.8)
+    circles.style('fill', 'rgba(255,116,116, 0.5)')
 
-    circles.forEach(function (d) {
-      var elem = d3.select(this)
-      var point = lmap.project(L.latLng(new L.LatLng(d[0], d[1])))._subtract(lmap.getPixelOrigin())
-      // var point = lmap.latLngToLayerPoint(new L.LatLng(d.geometry.coordinates[1], d.geometry.coordinates[0]));
+    circles.each(function (d) {
+      const elem = d3.select(this)
+      const point = lmap.project(L.latLng(new L.LatLng(d[1], d[0])))._subtract(lmap.getPixelOrigin())
       elem.attr('cx', point.x)
       elem.attr('cy', point.y)
       elem.attr('r', options.radius)
+      elem.attr('class', 'main-point-marker')
     })
   }
 
   svgLayer.onScaleChange = function (scaleDiff) {
     if (scaleDiff > 0.5) {
-      var newRadius = options.radius * 1 / scaleDiff
+      const newRadius = options.radius * 1 / scaleDiff
 
-      var currentRadius = d3.select('circle').attr('r')
+      const currentRadius = d3.select('circle').attr('r')
       if (currentRadius !== newRadius) {
         d3.selectAll('circle').attr('r', newRadius)
       }
