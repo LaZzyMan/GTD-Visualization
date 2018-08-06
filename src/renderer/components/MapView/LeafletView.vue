@@ -161,6 +161,7 @@ export default {
         radius: 5,
         lifetime: 10,
         ringRadius: 10,
+        color: '#E66417'
       }
       layerGroup.addLayer(L.SvgPointLayer(points, options, this.map))
     }

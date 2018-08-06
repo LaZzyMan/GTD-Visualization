@@ -5454,6 +5454,10 @@ js-yaml@~3.7.0:
     argparse "^1.0.7"
     esprima "^2.6.0"
 
+js2css3@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/js2css3/download/js2css3-1.0.1.tgz#41c97525856b16597d0ae5c261de55ceeed3b05b"
+
 jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"

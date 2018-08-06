@@ -1,5 +1,6 @@
 import L from 'leaflet'
 import * as d3 from 'd3'
+// import JS2CSSKeyframes from 'js2css3'
 
 // Add functions needed
 L.Map.prototype.latLngToLayerPoint = function (latlng) { // (LatLng)
@@ -168,19 +169,48 @@ L.SvgPointLayer = (data, options, lmap) => {
   svgLayer.onInitData = function () {
     this.lifetime = options.lifetime
     const g = d3.select(this._g)
-    const circles = g.selectAll('circle')
+    const pointGradient = g.append('radialGradient')
+      .attr('id', 'pointGradient')
+      .attr('cx', 0.5)
+      .attr('cy', 0.5)
+      .attr('r', 0.5)
+    pointGradient.append('stop')
+      .attr('offset', '0%')
+      .attr('stop-color', options.color)
+      .attr('stop-opacity', 1)
+    pointGradient.append('stop')
+      .attr('offset', '100%')
+      .attr('stop-color', options.color)
+      .attr('stop-opacity', 0)
+    const circles = g.selectAll('g')
       .data(data)
-      .enter().append('circle')
-    circles.style('fill-opacity', 0.8)
-    circles.style('fill', 'rgba(255,116,116, 0.5)')
+      .enter().append('g')
+    // circles.style('fill-opacity', 0.8)
+    circles.style('fill', options.color)
+    circles.style('stroke', options.color)
+    circles.attr('stroke-width', 1.5)
 
     circles.each(function (d) {
       const elem = d3.select(this)
       const point = lmap.project(L.latLng(new L.LatLng(d[1], d[0])))._subtract(lmap.getPixelOrigin())
-      elem.attr('cx', point.x)
-      elem.attr('cy', point.y)
-      elem.attr('r', options.radius)
-      elem.attr('class', 'main-point-marker')
+      elem.append('circle')
+        .attr('cx', point.x)
+        .attr('cy', point.y)
+        .attr('r', options.radius)
+        .attr('fill', 'url(#pointGradient)')
+        .attr('class', 'main-point-marker')
+      elem.append('circle')
+        .attr('cx', point.x)
+        .attr('cy', point.y)
+        .attr('r', options.ringRadius)
+        .attr('class', 'main-firstring-marker')
+        .attr('fill-opacity', 0)
+      elem.append('circle')
+        .attr('cx', point.x)
+        .attr('cy', point.y)
+        .attr('r', options.ringRadius)
+        .attr('class', 'main-secondring-marker')
+        .attr('fill-opacity', 0)
     })
   }
 
